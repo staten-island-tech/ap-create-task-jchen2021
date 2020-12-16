@@ -1,4 +1,5 @@
 import {DOMSelectors} from "./DOM";
+import {listen} from "./search";
 
 const init = async function (){
     const DOMSelectors = {
@@ -10,15 +11,12 @@ const init = async function (){
           const data = await response.json()
           data.results.forEach((anime) => {
               DOMSelectors.grid.insertAdjacentHTML(
-                  "beforeend",
-                  `
-                  
-                  `
+                  "beforeend", text
               );
           });    
       } catch (error) {
           console.log(error);
       }
   };
-  
+  listen();
   init(pageNumber);

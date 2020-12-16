@@ -1,0 +1,27 @@
+{
+  "name": "ap-create-task-jchen2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staten-island-tech/ap-create-task-jchen2021.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/staten-island-tech/ap-create-task-jchen2021/issues"
+  },
+  "homepage": "https://github.com/staten-island-tech/ap-create-task-jchen2021#readme",
+  "dependencies": {
+    "parcel": "^1.12.4"
+  },
+  "devDependencies": {
+    "sass": "^1.30.0"
+  }
+}
