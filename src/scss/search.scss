@@ -32,7 +32,8 @@ a{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 90vw;
+  width: 80vw;
+  height: 50vh;
   background-color: white;
   margin: 1rem auto;
   padding: 3rem auto;
@@ -158,12 +159,12 @@ a{
   margin: 3rem auto;
 }
 .submit-button {
-  color: rgb(224, 54, 82);
+  color: blue;
   font-size: 2rem;
   border-radius: 3rem;
   padding:1.8%;
   margin-top: -2rem;
-}
+} 
 
 .buttons{
   display: flex;

@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/staten-island-tech/ap-create-task-jchen2021#readme",
   "dependencies": {
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "react-select": "^3.1.1"
   },
   "devDependencies": {
     "sass": "^1.30.0"
