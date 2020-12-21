@@ -1,4 +1,4 @@
-/* import {DOMSelectors} from "./DOM";
+import {DOMSelectors} from "./DOM";
 
 let pageNumber = 1;
 //function for changed page?
@@ -59,7 +59,9 @@ const listen = async function () {
         
                   <div class="release-box">
                     <p class="release-date">Released</p>
-                    <p class="episode">${anime.episodes} </p>
+                    <p class="rating">${anime.rated} </p>
+                    <p class="synopsis">${anime.synopsis}</p>
+                    <a  class="user-score" href="${anime.url}" target="_blank">Add to List/a>
                   </div>`
 
             );
@@ -75,5 +77,3 @@ searchQuery(pageNumber);
 listen(); 
 
 export {listen};
-  
-  */

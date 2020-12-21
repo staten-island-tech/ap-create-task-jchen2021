@@ -1,28 +1,23 @@
 {
-  "name": "ap-create-task-jchen2021",
+  "name": "parcel-template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm dist/bundle.js",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/staten-island-tech/ap-create-task-jchen2021.git"
+    "build-prod": "parcel build src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/staten-island-tech/ap-create-task-jchen2021/issues"
-  },
-  "homepage": "https://github.com/staten-island-tech/ap-create-task-jchen2021#readme",
-  "dependencies": {
-    "parcel": "^1.12.4",
-    "react-select": "^3.1.1"
-  },
   "devDependencies": {
-    "sass": "^1.30.0"
-  }
+    "bundler": "^0.8.0",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.29.0"
+  },
+  "browserslist": [
+    "since 2017-06"
+  ]
 }

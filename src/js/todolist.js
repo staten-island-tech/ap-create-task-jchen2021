@@ -1,4 +1,3 @@
-import {DOMSelectors} from './DOM';
 let todoItems = [];
 
 function renderTodo(todo) {
@@ -96,4 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-todo();
+export {renderTodo};
