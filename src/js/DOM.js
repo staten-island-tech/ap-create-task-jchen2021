@@ -4,7 +4,7 @@ const DOMSelectors = {
     searchArea: document.getElementById("search-area"),
     btnPrev: document.querySelector(".btn-prev"),
     btnNext: document.querySelector(".btn-next"), 
-    id: document.querySelector(".user-score"),
+    addAnime: document.querySelector(".user-score"),
 }
 
 export {DOMSelectors};

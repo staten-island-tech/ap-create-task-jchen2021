@@ -1,6 +1,7 @@
 import {DOMSelectors} from "./DOM";
 import {listen} from "./search";
 import{renderTodo} from "./todolist";
+import {addAnime} from "./addList";
 
 let pageNumber = 1;
 //function for changed page?
