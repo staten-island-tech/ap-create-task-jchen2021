@@ -1,4 +1,4 @@
-import {DOMSelectors} from "./DOM"
+/* import {DOMSelectors} from "./DOM"
 let anime = [];
 
 function addAnime(text) {
@@ -26,3 +26,4 @@ function addAnime(text) {
     }
 }
 
+ */

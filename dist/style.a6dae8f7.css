@@ -1,6 +1,146 @@
-@import "./todolist";
-$font-main: "Asap", sans-serif;
-$font-second: "Josefin Slab", serif;
+@charset "UTF-8";
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  line-height: 1.4;
+}
+
+.container {
+  /*     border: solid gray 3px;
+      border-radius: 5px; */
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #333;
+  height: 90vh;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  overflow-y: auto;
+}
+
+.app-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 80px;
+  opacity: 0.5;
+}
+
+svg {
+  width: 64px;
+  height: 64px;
+}
+
+.todo-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.todo-item {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item span {
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.done span {
+  text-decoration: line-through;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.tick {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #333;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tick::before {
+  content: "✓";
+  font-size: 20px;
+  display: none;
+}
+
+.done .tick::before {
+  display: inline;
+}
+
+.delete-todo {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.delete-todo svg {
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 3px solid #333;
+}
+
+/* Add this below all the other styles */
+.empty-state {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.checklist-icon {
+  margin-bottom: 20px;
+}
+
+.empty-state__title, .empty-state__description {
+  margin-bottom: 20px;
+}
+
+/* Add this below the other styles */
+.todo-list:empty {
+  display: none;
+}
+
+.todo-list:empty + .empty-state {
+  display: flex;
+}
+
 html,
 body {
   box-sizing: border-box;
@@ -8,53 +148,58 @@ body {
   margin: 0;
   font-size: 62.5%;
   color: white;
-  font-family: $font-second;
+  font-family: "Josefin Slab", serif;
   font-weight: 500;
 }
+
 body {
   background-color: darkgray;
 }
-main{
-  display:flex;
+
+main {
+  display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-
 }
 
-a{
+a {
   list-style: none;
-  color:white;
+  color: white;
 }
+
 .header {
   font-size: 5.2rem;
-
   margin: 3rem auto;
   text-align: center;
 }
+
 .top-rated {
   margin: 1rem auto 2rem auto;
   text-align: center;
   font-size: 3.8rem;
-  color:black;
+  color: black;
 }
-section{
-   display: flex;
+
+section {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  flex-direction:column;
-  margin-right:5rem;
+  flex-direction: column;
+  margin-right: 5rem;
 }
+
 .anime-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  flex-direction:row;
+  flex-direction: row;
   width: 50vw;
   background-color: white;
   margin: 1rem auto;
   padding: 3rem auto;
   align-items: center;
 }
+
 .anime-card {
   height: 35vh;
   width: 15vw;
@@ -62,6 +207,7 @@ section{
   position: relative;
   margin: 2rem auto;
 }
+
 .anime-card-front {
   position: absolute;
   width: 100%;
@@ -73,17 +219,18 @@ section{
   z-index: 3;
   transition: all 0.3s;
 }
+
 .poster {
   width: 100%;
   height: 100%;
 }
+
 .anime-card-back {
   transition: all 0.3s;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
-
   display: none;
   flex-direction: column;
   justify-content: space-around;
@@ -93,13 +240,14 @@ section{
   width: 100%;
   height: 100%;
 }
+
 .anime-card-header {
   font-size: 1.7rem;
   text-transform: uppercase;
   margin: 1rem auto;
-
   text-align: center;
 }
+
 .score-box,
 .release-box {
   text-align: center;
@@ -115,33 +263,41 @@ section{
   flex-wrap: wrap;
   align-items: center;
 }
+
 .anime-genre {
   list-style: none;
 }
+
 .user-score {
   font-size: 1.2rem;
 }
+
 .release-date {
   font-size: 1.2rem;
 }
-.rating{
+
+.rating {
   font-size: 1.3rem;
   border: 1.5px solid;
   text-align: center;
-  padding: .5%;
+  padding: 0.5%;
   width: 4vw;
   margin-left: 40%;
 }
-.synopsis{
+
+.synopsis {
   font-size: 1.2rem;
 }
+
 .anime-card:hover .anime-card-front {
   z-index: 1;
 }
+
 .anime-card:hover .anime-card-back {
   z-index: 3;
   display: flex;
 }
+
 .test {
   color: black;
   font-size: 3rem;
@@ -149,19 +305,22 @@ section{
 
 .search-header {
   font-size: 4rem;
-  margin-top:0;
-  margin-bottom:3rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
   text-align: center;
 }
+
 .search-header-link,
 .search-header-link:visited,
 .search-header-link:link {
   text-decoration: none;
-  color: rgb(196, 35, 56);
+  color: #c42338;
 }
+
 .search-header-link:hover {
   text-decoration: underline;
 }
+
 .search-form {
   display: flex;
   flex-direction: column;
@@ -169,35 +328,39 @@ section{
   width: 50vw;
   margin: 1rem auto;
 }
+
 #search-area {
   width: 18vw;
   height: 5vh;
   font-size: 2rem;
   margin: 2rem auto;
-  border-radius:2px;
+  border-radius: 2px;
 }
+
 .submit-button {
-  color: rgb(224, 54, 82);
+  color: #e03652;
   font-size: 1.5rem;
   border-radius: 2rem;
-  padding:1.8%;
+  padding: 1.8%;
   margin-top: -2rem;
 }
 
-.buttons{
+.buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width:20vw;
-  height:15vh;
+  width: 20vw;
+  height: 15vh;
 }
 
 .btn-next,
-.btn-prev{
-  color: rgb(204, 58, 82);
+.btn-prev {
+  color: #cc3a52;
   font-size: 2rem;
   border-radius: 3rem;
-  padding:3.5%;
+  padding: 3.5%;
   align-items: center;
   width: 18rem;
 }
+
+/*# sourceMappingURL=/style.a6dae8f7.css.map */
