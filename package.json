@@ -19,5 +19,8 @@
   },
   "browserslist": [
     "since 2017-06"
-  ]
+  ],
+  "dependencies": {
+    "startbootstrap-agency": "^6.0.3"
+  }
 }
