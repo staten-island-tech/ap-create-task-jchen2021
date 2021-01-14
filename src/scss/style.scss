@@ -1,0 +1,71 @@
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 62.5%;
+  color: white;
+  font-family: $font-second;
+  font-weight: 500;
+}
+
+main{
+  display:flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+
+}
+
+.header {
+  font-size: 5.2rem;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+section{
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction:column;
+  margin-right:5rem;
+}
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction:row;
+  width: 50vw;
+  background-color: white;
+  margin: 1rem auto;
+  padding: 3rem auto;
+  align-items: center;
+}
+.manga {
+    height: 50vh;
+    width: 20vw;
+    margin: 0 auto;
+    position: relative;
+    margin: 2rem auto;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+}
+
+.like-button {
+  color: rgb(224, 54, 82);
+  font-size: 1rem;
+  border-radius: 3rem;
+  padding:1%;
+  margin-top: 1rem;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width:20vw;
+  height:15vh;
+}
+

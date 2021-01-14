@@ -117,272 +117,40 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/DOM.js":[function(require,module,exports) {
-"use strict";
+})({"js/index.js":[function(require,module,exports) {
+const randomColor = function randomColor() {
+  const page = document.querySelector('body');
+  const userInput = document.querySelector('time');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DOMSelectors = void 0;
-const DOMSelectors = {
-  grid: document.querySelector(".anime-grid"),
-  searchForm: document.getElementById("search-form"),
-  searchArea: document.getElementById("search-area"),
-  btnPrev: document.querySelector(".btn-prev"),
-  btnNext: document.querySelector(".btn-next"),
-  addAnime: document.querySelector(".user-score")
-};
-exports.DOMSelectors = DOMSelectors;
-},{}],"js/search.js":[function(require,module,exports) {
-"use strict";
+  function rad(min, max) {
+    Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.listen = void 0;
-
-var _DOM = require("./DOM");
-
-let pageNumber = 1; //function for changed page?
-
-const listen = async function listen() {
-  _DOM.DOMSelectors.searchForm.addEventListener("submit", function (e) {
-    const nextPage = function nextPage() {
-      //next.addeventlistener
-      _DOM.DOMSelectors.btnNext.addEventListener("click", function () {
-        //update page variable
-        pageNumber++; //re-run query()
-
-        searchQuery(pageNumber);
-      });
-    };
-
-    const previousPage = function previousPage() {
-      //next.addeventlistener
-      _DOM.DOMSelectors.btnPrev.addEventListener("click", function () {
-        //update page variable
-        pageNumber--; //re-run query()
-
-        searchQuery(pageNumber);
-      });
-    };
-
-    previousPage();
-    nextPage();
-    e.preventDefault();
-    const searchParams = _DOM.DOMSelectors.searchArea.value;
-
-    const searchQuery = async function searchQuery(pageNumber) {
-      _DOM.DOMSelectors.grid.innerHTML = "";
-      let query = "https://api.jikan.moe/v3/search/anime?q=".concat(searchParams, "&page=").concat(pageNumber, "&order_by=score&limit=6");
-
-      if (searchParams === "") {
-        query = "https://api.jikan.moe/v3/search/anime?q=&page=1&sort=desc&order_by=scores&limit=12";
-      }
-
-      try {
-        const response = await fetch(query);
-        const data = await response.json();
-        data.results.forEach(anime => {
-          _DOM.DOMSelectors.grid.insertAdjacentHTML("beforeend", "<div class=\"anime-card\">\n                <div class=\"anime-card-front\">\n                  <img\n                    src=\"".concat(anime.image_url, "\"\n                    alt=\"\"\n                    class=\"poster\"\n                  />\n                </div>\n                <div class=\"anime-card-back\">\n                  <h3 class=\"anime-card-header\">").concat(anime.title, "</h3>\n                  <div class=\"score-box\">\n                    <p class=\"user-score\">Community Score</p>\n                    <p class=\"user-score\">").concat(anime.score, "</p>\n                  </div>\n        \n                  <div class=\"release-box\">\n                    <p class=\"release-date\">Released</p>\n                    <p class=\"rating\">").concat(anime.rated, " </p>\n                    <p class=\"synopsis\">").concat(anime.synopsis, "</p>\n                    <a  class=\"user-score\" href=\"").concat(anime.url, "\" target=\"_blank\">Add to List/a>\n                  </div>"));
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    searchQuery(pageNumber);
-  });
+  let colorRGB = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
+  page.style.backgroundColor = colorRGB;
+  setInterval(function () {
+    randomColor();
+  }, userInput);
 };
 
-exports.listen = listen;
-listen();
-},{"./DOM":"js/DOM.js"}],"js/todolist.js":[function(require,module,exports) {
-"use strict";
+randomColor();
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderTodo = renderTodo;
+function push(color) {
+  let a = [];
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-let todoItems = [];
-
-function renderTodo(todo) {
-  localStorage.setItem('todoItems', JSON.stringify(todoItems));
-  const list = document.querySelector('.js-todo-list');
-  const item = document.querySelector("[data-key='".concat(todo.id, "']"));
-
-  if (todo.deleted) {
-    item.remove();
-    if (todoItems.length === 0) list.innerHTML = '';
-    return;
+  for (let i = 0; i < color; i++) {
+    a.push(i * 2);
   }
 
-  const isChecked = todo.checked ? 'done' : '';
-  const node = document.createElement("li");
-  node.setAttribute('class', "todo-item ".concat(isChecked));
-  node.setAttribute('data-key', todo.id);
-  node.innerHTML = "\n    <input id=\"".concat(todo.id, "\" type=\"checkbox\"/>\n    <label for=\"").concat(todo.id, "\" class=\"tick js-tick\"></label>\n    <span>").concat(todo.text, "</span>\n    <button class=\"delete-todo js-delete-todo\">\n    <svg><use href=\"#delete-icon\"></use></svg>\n    </button>\n  ");
-
-  if (item) {
-    list.replaceChild(node, item);
-  } else {
-    list.append(node);
-  }
+  return a;
 }
 
-function addTodo(text) {
-  const todo = {
-    text,
-    checked: false,
-    id: Date.now()
-  };
-  todoItems.push(todo);
-  renderTodo(todo);
-}
+push(color);
 
-function toggleDone(key) {
-  const index = todoItems.findIndex(item => item.id === Number(key));
-  todoItems[index].checked = !todoItems[index].checked;
-  renderTodo(todoItems[index]);
-}
-
-function deleteTodo(key) {
-  const index = todoItems.findIndex(item => item.id === Number(key));
-
-  const todo = _objectSpread({
-    deleted: true
-  }, todoItems[index]);
-
-  todoItems = todoItems.filter(item => item.id !== Number(key));
-  renderTodo(todo);
-}
-
-const form = document.querySelector('.js-form');
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  const input = document.querySelector('.js-todo-input');
-  const text = input.value.trim();
-
-  if (text !== '') {
-    addTodo(text);
-    input.value = '';
-    input.focus();
-  }
-});
-const list = document.querySelector('.js-todo-list');
-list.addEventListener('click', event => {
-  if (event.target.classList.contains('js-tick')) {
-    const itemKey = event.target.parentElement.dataset.key;
-    toggleDone(itemKey);
-  }
-
-  if (event.target.classList.contains('js-delete-todo')) {
-    const itemKey = event.target.parentElement.dataset.key;
-    deleteTodo(itemKey);
-  }
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const ref = localStorage.getItem('todoItems');
-
-  if (ref) {
-    todoItems = JSON.parse(ref);
-    todoItems.forEach(t => {
-      renderTodo(t);
-    });
-  }
-});
-},{}],"js/addList.js":[function(require,module,exports) {
-/* import {DOMSelectors} from "./DOM"
-let anime = [];
-
-function addAnime(text) {
-  DOMSelectors.addAnime.addEventListener("click", function () {
-    const DOMSelectors = {
-    grid: document.querySelector(".anime-grid"),
-  }
-    const init = async function (){
-        const query = `https://api.jikan.moe/v3/search/anime?q=&page=${pageNumber}&sort=desc&order_by=score&limit=12`;
-    try {
-        const response = await fetch(query);
-        const data = await response.json()
-        data.results.forEach((anime) => {
-        const todo = {
-            text,
-            checked: false,
-            id: `${anime.title}`,
-        }
-        todoItems.push(anime);
-        renderTodo(anime);
-        })
-    }catch (error) {
-        console.log(error);
-    }}
-    }
-}
-
- */
-},{}],"js/index.js":[function(require,module,exports) {
-"use strict";
-
-var _DOM = require("./DOM");
-
-var _search = require("./search");
-
-var _todolist = require("./todolist");
-
-var _addList = require("./addList");
-
-let pageNumber = 1; //function for changed page?
-
-const nextPage = function nextPage() {
-  //next.addeventlistener
-  _DOM.DOMSelectors.btnNext.addEventListener("click", function () {
-    //update page variable
-    pageNumber++; //re-run query()
-
-    init(pageNumber);
-  });
+const showNumber = function showNumber() {
+  document.querySelector('button').addEventListener("click", push(color));
 };
-
-const previousPage = function previousPage() {
-  //next.addeventlistener
-  _DOM.DOMSelectors.btnPrev.addEventListener("click", function () {
-    //update page variable
-    pageNumber--; //re-run query()
-
-    init(pageNumber);
-  });
-};
-
-previousPage();
-nextPage();
-
-const init = async function init(pageNumber) {
-  const DOMSelectors = {
-    grid: document.querySelector(".anime-grid")
-  };
-  const query = "https://api.jikan.moe/v3/search/anime?q=&page=".concat(pageNumber, "&sort=desc&order_by=score&limit=6");
-
-  try {
-    const response = await fetch(query);
-    const data = await response.json();
-    data.results.forEach(anime => {
-      DOMSelectors.grid.insertAdjacentHTML("beforeend", "<div class=\"anime-card\">\n                <div class=\"anime-card-front\">\n                  <img\n                    src=\"".concat(anime.image_url, "\"\n                    alt=\"\"\n                    class=\"poster\"\n                  />\n                </div>\n                <div class=\"anime-card-back\">\n                  <h3 class=\"anime-card-header\">").concat(anime.title, "</h3>\n                  <div class=\"score-box\">\n                    <p class=\"user-score\">Community Score</p>\n                    <p class=\"user-score\">").concat(anime.score, "</p>\n                </div>\n                            \n                  <div class=\"release-box\">\n                    <p class=\"release-date\">Released</p>\n                    <p class=\"rating\">").concat(anime.rated, " </p>\n                    <p class=\"synopsis\">").concat(anime.synopsis, "</p>\n                    <a  class=\"user-score add-cart\" href=\"#\"> Want to Watch </a>\n                  </div>"));
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-init(pageNumber);
-},{"./DOM":"js/DOM.js","./search":"js/search.js","./todolist":"js/todolist.js","./addList":"js/addList.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -410,7 +178,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7138" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
