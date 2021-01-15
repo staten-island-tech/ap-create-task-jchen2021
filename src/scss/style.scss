@@ -4,28 +4,28 @@ body {
   padding: 0;
   margin: 0;
   font-size: 62.5%;
-  color: white;
-  font-family: $font-second;
   font-weight: 500;
   background-color: transparent;
 }
 
 
 .header {
-  font-size: 5.2rem;
+  font-size: 3rem;
   margin: 3rem auto;
   text-align: center;
 }
 
 section{
-   display: flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction:column;
   margin-right:5rem;
   align-items: center;
 }
-
+.block{
+  align-items: center;
+}
 .enter-form {
   display: flex;
   flex-direction: column;
@@ -36,12 +36,12 @@ section{
 #enter-area {
   width: 30vw;
   height: 5vh;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 3rem auto;
 }
 .submit-button {
   color: rgb(224, 54, 82);
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 3rem;
   padding:1.8%;
   margin-top: -2rem;
