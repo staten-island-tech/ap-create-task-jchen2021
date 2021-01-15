@@ -120,30 +120,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"js/index.js":[function(require,module,exports) {
 const randomColor = function randomColor() {
   const page = document.querySelector('body');
-  const userInput = document.querySelector('time');
+  const userInput = document.querySelector('.time');
 
   function rad(min, max) {
     Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  } //let colorRGB = 'rgb'+'('+rad(0,255)+','+rad(0,255)+','+rad(0,255)+')';
 
-  let colorRGB = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
-  page.style.backgroundColor = colorRGB;
+
+  page.style.backgroundColor = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
   setInterval(function () {
     randomColor();
-  }, userInput);
+  }, 2000);
 };
 
 randomColor();
-
-function push(color) {
-  let a = [];
-
-  for (let i = 0; i < color; i++) {
-    a.push(i * 2);
-  }
-
-  return a;
+/* function push(color){
+    let a =[];
+    for (let i = 0; i < color; i++){
+        a.push(i*2);
+    }
+    return a;
 }
+ */
 
 push(color);
 
@@ -178,7 +176,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7138" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1769" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
