@@ -117,23 +117,57 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/index.js":[function(require,module,exports) {
-const randomColor = function randomColor() {
-  const page = document.querySelector('body');
-  const userInput = document.querySelector('.time');
+})({"js/DOM.js":[function(require,module,exports) {
+"use strict";
 
-  function rad(min, max) {
-    Math.floor(Math.random() * (max - min + 1)) + min;
-  } //let colorRGB = 'rgb'+'('+rad(0,255)+','+rad(0,255)+','+rad(0,255)+')';
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DOMSelectors = void 0;
+const DOMSelectors = {
+  page: document.querySelector('body'),
+  enterForm: document.getElementById("enter-form"),
+  time: document.getElementById("enter-area"),
+  numberSubmit: document.querySelector('.submit-button')
+};
+exports.DOMSelectors = DOMSelectors;
+},{}],"js/index.js":[function(require,module,exports) {
+"use strict";
 
+var _DOM = require("./DOM");
 
-  page.style.backgroundColor = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
-  setInterval(function () {
-    randomColor();
-  }, 2000);
+const enter = function enter() {
+  const userInput = [];
+
+  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function () {
+    userInput.push(_DOM.DOMSelectors.time.value);
+  });
 };
 
-randomColor();
+const randomColor = function randomColor() {
+  function rad(min, max) {
+    Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  ;
+
+  function changeColor() {
+    let colorRGB = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
+    _DOM.DOMSelectors.page.style.backgroundColor = colorRGB;
+  }
+
+  ;
+  setInterval(function () {
+    changeColor();
+  }, enter());
+};
+
+const randomBackgroundColor = function randomBackgroundColor() {
+  enter();
+  randomColor();
+};
+
+randomBackgroundColor();
 /* function push(color){
     let a =[];
     for (let i = 0; i < color; i++){
@@ -143,12 +177,12 @@ randomColor();
 }
  */
 
-push(color);
-
-const showNumber = function showNumber() {
-  document.querySelector('button').addEventListener("click", push(color));
-};
-},{}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+/* push(color);
+const showNumber = function(){
+    document.querySelector('button').addEventListener("click", push(color));
+   }
+     */
+},{"./DOM":"js/DOM.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -176,7 +210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3185" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

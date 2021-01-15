@@ -7,14 +7,9 @@ body {
   color: white;
   font-family: $font-second;
   font-weight: 500;
+  background-color: transparent;
 }
 
-main{
-  display:flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-
-}
 
 .header {
   font-size: 5.2rem;
@@ -28,37 +23,28 @@ section{
   justify-content: space-around;
   flex-direction:column;
   margin-right:5rem;
-}
-.block {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  flex-direction:row;
-  width: 50vw;
-  background-color: white;
-  margin: 1rem auto;
-  padding: 3rem auto;
   align-items: center;
 }
-.manga {
-    height: 50vh;
-    width: 20vw;
-    margin: 0 auto;
-    position: relative;
-    margin: 2rem auto;
-}
 
-.poster {
-  width: 100%;
-  height: 100%;
+.enter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  margin: 1rem auto;
 }
-
-.numberSubmit {
+#enter-area {
+  width: 30vw;
+  height: 5vh;
+  font-size: 2.5rem;
+  margin: 3rem auto;
+}
+.submit-button {
   color: rgb(224, 54, 82);
-  font-size: 1rem;
+  font-size: 2rem;
   border-radius: 3rem;
-  padding:1%;
-  margin-top: 1rem;
+  padding:1.8%;
+  margin-top: -2rem;
 }
 
 .buttons{

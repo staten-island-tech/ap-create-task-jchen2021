@@ -1,19 +1,33 @@
-const randomColor= function(){
-    const page = document.querySelector('body');
-    const userInput = function(){
-        document.querySelector('.numberSubmit').addEventListener("click",
-        var time = document.getElementById('.time'))
-    function rad(min,max){
-    Math.floor(Math.random()*(max-min+1)) + min
-    }
-    //let colorRGB = 'rgb'+'('+rad(0,255)+','+rad(0,255)+','+rad(0,255)+')';
-    page.style.backgroundColor = 'rgb'+'('+rad(0,255)+','+rad(0,255)+','+rad(0,255)+')';
-    setInterval(function(){
-        randomColor();
-    }, userInput(););
-    
+import {DOMSelectors} from "./DOM";
+
+const enter = function(){  
+    const userInput = [];
+    DOMSelectors.numberSubmit.addEventListener('click', function(){
+        userInput.push(DOMSelectors.time.value);
+    });    
 };
-randomColor();
+
+const randomColor = function(){
+    function rad(min,max){
+        Math.floor(Math.random()*(max-min+1)) + min
+    };
+
+    function changeColor(){
+        let colorRGB = 'rgb'+'('+rad(0,255)+','+rad(0,255)+','+rad(0,255)+')';
+        DOMSelectors.page.style.backgroundColor = colorRGB;
+    };
+
+    setInterval(function(){
+        changeColor();
+    }, enter()); 
+}
+
+const randomBackgroundColor= function(){
+    enter();
+    randomColor();
+};
+
+randomBackgroundColor();
 
 /* function push(color){
     let a =[];
@@ -24,9 +38,9 @@ randomColor();
 }
  */
 
-push(color);
+/* push(color);
 const showNumber = function(){
     document.querySelector('button').addEventListener("click", push(color));
    }
-    
+     */
     

@@ -1,0 +1,8 @@
+const DOMSelectors = {
+    page: document.querySelector('body'),
+    enterForm: document.getElementById("enter-form"),
+    time: document.getElementById("enter-area"),
+    numberSubmit: document.querySelector('.submit-button')
+}
+
+export {DOMSelectors};
