@@ -28,7 +28,7 @@ const randomColor = function(){
 const randomBackgroundColor= function(){
     setInterval(function(){
     randomColor();
-}, enter()); 
+}, 2000); 
 }
 
 randomBackgroundColor();

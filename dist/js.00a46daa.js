@@ -172,7 +172,7 @@ const randomColor = function randomColor() {
 const randomBackgroundColor = function randomBackgroundColor() {
   setInterval(function () {
     randomColor();
-  }, enter());
+  }, 2000);
 };
 
 exports.randomBackgroundColor = randomBackgroundColor;
