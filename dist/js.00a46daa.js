@@ -125,64 +125,65 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DOMSelectors = void 0;
 const DOMSelectors = {
-  page: document.querySelector('body'),
-  enterForm: document.getElementById("enter-form"),
-  time: document.getElementById("enter-area"),
-  numberSubmit: document.querySelector('.submit-button')
+  enterForm: document.getElementById(".enter-form"),
+  time: document.getElementById(".enter-area"),
+  numberSubmit: document.querySelector('.submit-button'),
+  history: document.querySelector('.showHistory'),
+  historyArr: document.querySelector('.historyArr')
 };
 exports.DOMSelectors = DOMSelectors;
-},{}],"js/index.js":[function(require,module,exports) {
+},{}],"js/randomColor.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.randomBackgroundColor = void 0;
+
+var _DOM = require("./DOM");
+
+//get the user input time
+const enter = function enter() {
+  let colors = [];
+  const userInput = _DOM.DOMSelectors.time;
+
+  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function () {
+    colors.push(userInput);
+  });
+
+  return colors;
+}; //get a random color
+
+
+const randomColor = function randomColor() {
+  const colorPage = document.querySelector('.colorPage');
+
+  const rgbId = function rgbId() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  };
+
+  colorPage.style.backgroundColor = rgbId();
+}; // change color every x seconds
+
+
+const randomBackgroundColor = function randomBackgroundColor() {
+  setInterval(function () {
+    randomColor();
+  }, enter());
+};
+
+exports.randomBackgroundColor = randomBackgroundColor;
+randomBackgroundColor();
+},{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _DOM = require("./DOM");
 
-const enter = function enter() {
-  const userInput = [];
-
-  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function () {
-    userInput.push(_DOM.DOMSelectors.time.value);
-  });
-};
-
-const randomColor = function randomColor() {
-  function rad(min, max) {
-    Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  ;
-
-  function changeColor() {
-    let colorRGB = 'rgb' + '(' + rad(0, 255) + ',' + rad(0, 255) + ',' + rad(0, 255) + ')';
-    _DOM.DOMSelectors.page.style.backgroundColor = colorRGB;
-  }
-
-  ;
-  setInterval(function () {
-    changeColor();
-  }, enter());
-};
-
-const randomBackgroundColor = function randomBackgroundColor() {
-  enter();
-  randomColor();
-};
-
-randomBackgroundColor();
-/* function push(color){
-    let a =[];
-    for (let i = 0; i < color; i++){
-        a.push(i*2);
-    }
-    return a;
-}
- */
-
-/* push(color);
-const showNumber = function(){
-    document.querySelector('button').addEventListener("click", push(color));
-   }
-     */
-},{"./DOM":"js/DOM.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _randomColor = require("./randomColor");
+},{"./DOM":"js/DOM.js","./randomColor":"js/randomColor.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -210,7 +211,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3185" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2243" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
