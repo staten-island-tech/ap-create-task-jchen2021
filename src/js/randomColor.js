@@ -8,12 +8,12 @@ const rgbId = function (){
     var g = Math.floor(Math.random() *256);
     var b = Math.floor(Math.random() *256);
     return "rgb(" + r + ", " + g + ", " + b + ")";
-};
+}; 
 
 const randomColor = function(){
     colorPage.style.backgroundColor = rgbId();
     colorPage.innerHTML=rgbId();
-};
+}; 
 
 //get the user input time
 const userInput = function(){  
@@ -27,6 +27,25 @@ const userInput = function(){
     interval = setInterval(randomColor(),timing);
 };
 
+//name of the color
+/* const init = async function (){
+const query = `color-names.herokuapp.com/v1/`;
+    try {
+        const response = await fetch(query);
+        const data = await response.json()
+        data.results.forEach((color) => {
+           DOMSelectors.colorName.insertAdjacentHTML(
+                "beforeend",
+              `<p class="rgbNumber">
+              ${color.name}
+            </p>`
+            );
+        });    
+    } catch (error) {
+        console.log(error);
+    }
+};
+init(); */
 
 //history
 const showHistory = DOMSelectors.showHistory;
@@ -37,7 +56,12 @@ const colorHist = []
 //push the rgb# into array
 const historyArray = function(){
     for(let i = 0; i < colorHist.length; i++){
-        colorHist.push(rgbId());
+        let rgbId = {
+            r:rgbId(r),
+            g:rgbId(g),
+            b:rgbId(b)
+        }
+        colorHist.push(rgbId);
     }
     return colorHist;
   }

@@ -2,6 +2,7 @@ const DOMSelectors = {
     enterForm: document.getElementById("enterForm"),
     time: document.getElementById("enterArea"),
     colorPage: document.querySelector('.colorPage'),
+    rgbName: document.querySelector('.rgbName'),
     numberSubmit: document.querySelector(".submit-button"),
     history: document.querySelector(".history"),
     showHistory: document.querySelector(".showHistory"),

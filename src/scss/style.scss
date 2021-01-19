@@ -34,6 +34,10 @@ section{
   font-size: 3rem;
   text-align: center;
 }
+.rgbName{
+  font-size: 2rem;
+  text-align: center;
+}
 .enterForm {
   display: flex;
   flex-direction: column;
@@ -63,7 +67,8 @@ section{
   height:15vh;
 }
 
-.history{
+.history
+.historyArr{
   font-size: 2rem;
   text-align: center;
 }

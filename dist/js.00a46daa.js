@@ -128,6 +128,7 @@ const DOMSelectors = {
   enterForm: document.getElementById("enterForm"),
   time: document.getElementById("enterArea"),
   colorPage: document.querySelector('.colorPage'),
+  rgbName: document.querySelector('.rgbName'),
   numberSubmit: document.querySelector(".submit-button"),
   history: document.querySelector(".history"),
   showHistory: document.querySelector(".showHistory"),
@@ -172,7 +173,27 @@ const userInput = function userInput() {
 
   console.log('Enter a time interval');
   interval = setInterval(randomColor(), timing);
-}; //history
+}; //name of the color
+
+/* const init = async function (){
+const query = `color-names.herokuapp.com/v1/`;
+    try {
+        const response = await fetch(query);
+        const data = await response.json()
+        data.results.forEach((color) => {
+           DOMSelectors.colorName.insertAdjacentHTML(
+                "beforeend",
+              `<p class="rgbNumber">
+              ${color.name}
+            </p>`
+            );
+        });    
+    } catch (error) {
+        console.log(error);
+    }
+};
+init(); */
+//history
 
 
 const showHistory = _DOM.DOMSelectors.showHistory;
@@ -182,7 +203,12 @@ const colorHist = []; //push the rgb# into array
 
 const historyArray = function historyArray() {
   for (let i = 0; i < colorHist.length; i++) {
-    colorHist.push(rgbId());
+    let rgbId = {
+      r: rgbId(r),
+      g: rgbId(g),
+      b: rgbId(b)
+    };
+    colorHist.push(rgbId);
   }
 
   return colorHist;
