@@ -145,27 +145,35 @@ exports.displayArr = exports.randomBackgroundColor = void 0;
 
 var _DOM = require("./DOM");
 
-var time = _DOM.DOMSelectors.time.value; //get a random color
+var interval;
+var timing = 50;
+var time = _DOM.DOMSelectors.time.value;
+const showHistory = _DOM.DOMSelectors.showHistory;
+const history = _DOM.DOMSelectors.history;
+const colorHist = []; //get a random color
 
 const colorPage = _DOM.DOMSelectors.colorPage;
 
-const rgbId = function rgbId() {
+const rgbId = function rgbId(r, g, b) {
   var r = Math.floor(Math.random() * 256);
   var g = Math.floor(Math.random() * 256);
   var b = Math.floor(Math.random() * 256);
   return "rgb(" + r + ", " + g + ", " + b + ")";
 };
 
+const historyArray = function historyArray() {
+  colorHist.push(rgbId());
+  return colorHist;
+};
+
 const randomColor = function randomColor() {
-  colorPage.style.backgroundColor = rgbId();
-  colorPage.innerHTML = rgbId();
-}; //get the user input time
+  var last = colorHist[colorHist.length - 1];
+  colorPage.style.backgroundColor = last;
+  colorPage.innerHTML = historyArray(last);
+}; //set timer
 
 
 const userInput = function userInput() {
-  var interval;
-  var timing = 2000;
-
   if (interval) {
     console.log('Clear');
     clearInterval(interval);
@@ -173,56 +181,15 @@ const userInput = function userInput() {
 
   console.log('Enter a time interval');
   interval = setInterval(randomColor(), timing);
-}; //name of the color
-
-/* const init = async function (){
-const query = `color-names.herokuapp.com/v1/`;
-    try {
-        const response = await fetch(query);
-        const data = await response.json()
-        data.results.forEach((color) => {
-           DOMSelectors.colorName.insertAdjacentHTML(
-                "beforeend",
-              `<p class="rgbNumber">
-              ${color.name}
-            </p>`
-            );
-        });    
-    } catch (error) {
-        console.log(error);
-    }
-};
-init(); */
-//history
-
-
-const showHistory = _DOM.DOMSelectors.showHistory;
-const history = _DOM.DOMSelectors.history;
-const historyArr = _DOM.DOMSelectors.historyArr;
-const colorHist = []; //push the rgb# into array
-
-const historyArray = function historyArray() {
-  for (let i = 0; i < colorHist.length; i++) {
-    let rgbId = {
-      r: rgbId(r),
-      g: rgbId(g),
-      b: rgbId(b)
-    };
-    colorHist.push(rgbId);
-  }
-
-  return colorHist;
 };
 
 const displayArr = function displayArr() {
-  history.innerHTML = '';
   showHistory.addEventListener("click", e => {
     e.preventDefault();
-    historyArray();
-    console.log(historyArray());
-    historyArr.innerHtml = "Color RGB#" + colorHist;
+    history.innerHTML = '';
+    history.innerHTML = historyArray() + "<br>";
   });
-}; // change color every x milliseconds
+}; //get the user input time
 
 
 exports.displayArr = displayArr;
@@ -230,10 +197,12 @@ exports.displayArr = displayArr;
 const randomBackgroundColor = function randomBackgroundColor() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
     e.preventDefault();
-    const timing = parseInt(time * 1000);
-    userInput(timing);
+    const timing = parseInt(time * 5000);
+    userInput(timing); //randomColor();
   });
-};
+}; //history
+// change color every x milliseconds
+
 
 exports.randomBackgroundColor = randomBackgroundColor;
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
@@ -273,7 +242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12019" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3823" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

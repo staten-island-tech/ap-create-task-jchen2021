@@ -31,7 +31,7 @@ section{
   height: 40vh;
   border: 3px black solid;
   background-color: transparent;
-  font-size: 3rem;
+  font-size: 0rem;
   text-align: center;
 }
 .rgbName{
@@ -67,8 +67,14 @@ section{
   height:15vh;
 }
 
-.history
+.history{
+  width: 50vw;
+  height: 40vh;
+  font-size: 2rem;
+  text-align: center;
+}
 .historyArr{
   font-size: 2rem;
   text-align: center;
+  color: transparent;
 }

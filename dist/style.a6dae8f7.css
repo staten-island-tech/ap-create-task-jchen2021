@@ -31,7 +31,7 @@ section {
   height: 40vh;
   border: 3px black solid;
   background-color: transparent;
-  font-size: 3rem;
+  font-size: 0rem;
   text-align: center;
 }
 
@@ -71,9 +71,17 @@ section {
   height: 15vh;
 }
 
-.history .historyArr {
+.history {
+  width: 50vw;
+  height: 40vh;
   font-size: 2rem;
   text-align: center;
+}
+
+.historyArr {
+  font-size: 2rem;
+  text-align: center;
+  color: transparent;
 }
 
 /*# sourceMappingURL=/style.a6dae8f7.css.map */
