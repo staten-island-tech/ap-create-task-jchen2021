@@ -8,25 +8,22 @@
 <body>
   <h1 class="header">COLORS</h1>
   <section class="block">
-    <form id="enter-form" class="enter-form">
-      <textarea
-        name="enter-area"
-        id="enter-area"
+    <form id="enterForm" class="enterForm">
+      <input
+      type="text"
+        name="enterArea"
+        id="enterArea"
         placeholder="Change color every ___s"
-      ></textarea>
-      <input type="submit" class="submit-button" />
+      ></input>
+      <button type="submit" class="submit-button">Submit</button>
     </form>
-    <!-- <label for="instroction">Enter Time</label>
-    <input type="text" id="time" class="time">
-    <button class="numberSubmit">Submit</button> -->
     <div class="colorPage">
       Color Page
     </div>
-    <div class="history">
+    <div>
       <button class="showHistory">Show History</button>
-      <div class="historyArr">
-        <p>Color RGB#</p>
-        <p>rgb(255,255,255)</p>
+      <div class="history">
+        <p class="historyArr">rgb(255,255,255)</p>
       </div>
     </div>
   </section>

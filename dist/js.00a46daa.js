@@ -125,11 +125,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DOMSelectors = void 0;
 const DOMSelectors = {
-  enterForm: document.getElementById(".enter-form"),
-  time: document.getElementById(".enter-area"),
-  numberSubmit: document.querySelector('.submit-button'),
-  history: document.querySelector('.showHistory'),
-  historyArr: document.querySelector('.historyArr')
+  enterForm: document.getElementById("enterForm"),
+  time: document.getElementById("enterArea"),
+  colorPage: document.querySelector('.colorPage'),
+  numberSubmit: document.querySelector(".submit-button"),
+  history: document.querySelector(".history"),
+  showHistory: document.querySelector(".showHistory"),
+  historyArr: document.querySelector(".historyArr")
 };
 exports.DOMSelectors = DOMSelectors;
 },{}],"js/randomColor.js":[function(require,module,exports) {
@@ -138,51 +140,85 @@ exports.DOMSelectors = DOMSelectors;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.randomBackgroundColor = void 0;
+exports.displayArr = exports.randomBackgroundColor = void 0;
 
 var _DOM = require("./DOM");
 
-//get the user input time
-const enter = function enter() {
-  let colors = [];
-  const userInput = _DOM.DOMSelectors.time;
+var time = _DOM.DOMSelectors.time.value; //get a random color
 
-  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function () {
-    colors.push(userInput);
-  });
+const colorPage = _DOM.DOMSelectors.colorPage;
 
-  return colors;
-}; //get a random color
-
+const rgbId = function rgbId() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  return "rgb(" + r + ", " + g + ", " + b + ")";
+};
 
 const randomColor = function randomColor() {
-  const colorPage = document.querySelector('.colorPage');
-
-  const rgbId = function rgbId() {
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    return "rgb(" + r + ", " + g + ", " + b + ")";
-  };
-
   colorPage.style.backgroundColor = rgbId();
-}; // change color every x seconds
+  colorPage.innerHTML = rgbId();
+}; //get the user input time
 
+
+const userInput = function userInput() {
+  var interval;
+  var timing = 2000;
+
+  if (interval) {
+    console.log('Clear');
+    clearInterval(interval);
+  }
+
+  console.log('Enter a time interval');
+  interval = setInterval(randomColor(), timing);
+}; //history
+
+
+const showHistory = _DOM.DOMSelectors.showHistory;
+const history = _DOM.DOMSelectors.history;
+const historyArr = _DOM.DOMSelectors.historyArr;
+const colorHist = []; //push the rgb# into array
+
+const historyArray = function historyArray() {
+  for (let i = 0; i < colorHist.length; i++) {
+    colorHist.push(rgbId());
+  }
+
+  return colorHist;
+};
+
+const displayArr = function displayArr() {
+  history.innerHTML = '';
+  showHistory.addEventListener("click", e => {
+    e.preventDefault();
+    historyArray();
+    console.log(historyArray());
+    historyArr.innerHtml = "Color RGB#" + colorHist;
+  });
+}; // change color every x milliseconds
+
+
+exports.displayArr = displayArr;
 
 const randomBackgroundColor = function randomBackgroundColor() {
-  setInterval(function () {
-    randomColor();
-  }, 2000);
+  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
+    e.preventDefault();
+    const timing = parseInt(time * 1000);
+    userInput(timing);
+  });
 };
 
 exports.randomBackgroundColor = randomBackgroundColor;
-randomBackgroundColor();
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _DOM = require("./DOM");
 
 var _randomColor = require("./randomColor");
+
+(0, _randomColor.randomBackgroundColor)();
+(0, _randomColor.displayArr)();
 },{"./DOM":"js/DOM.js","./randomColor":"js/randomColor.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -211,7 +247,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2243" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12019" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
