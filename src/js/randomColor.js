@@ -14,10 +14,12 @@ const rgbId = function (r,g,b){
     var b = Math.floor(Math.random() *256);
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }; 
+
 const historyArray = function(){
     colorHist.push(rgbId());
     return colorHist;
 };
+
 const randomColor = function(){
     var last = colorHist[colorHist.length -1]
     colorPage.style.backgroundColor = last;
@@ -26,15 +28,14 @@ const randomColor = function(){
 
 //set timer
 function createInterval(timing){
-    clearInterval(interval);
     interval = setInterval(randomColor(),timing);
+    clearInterval(interval);
 }
 
 const userInput = function(){  
     timing = parseInt(time*1000);
     createInterval(timing);    
 }; 
-
 const displayArr = function(){
     showHistory.addEventListener("click", (e) =>{
     e.preventDefault();
@@ -52,11 +53,6 @@ const randomBackgroundColor= function(){
         //randomColor();
     })
 }    
-//history
-
-
-// change color every x milliseconds
-
 
 export {randomBackgroundColor};
 export {displayArr};

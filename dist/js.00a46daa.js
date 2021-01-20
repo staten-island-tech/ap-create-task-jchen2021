@@ -174,8 +174,8 @@ const randomColor = function randomColor() {
 
 
 function createInterval(timing) {
-  clearInterval(interval);
   interval = setInterval(randomColor(), timing);
+  clearInterval(interval);
 }
 
 const userInput = function userInput() {
@@ -200,9 +200,7 @@ const randomBackgroundColor = function randomBackgroundColor() {
     userInput(); //setInterval(randomColor(),500)
     //randomColor();
   });
-}; //history
-// change color every x milliseconds
-
+};
 
 exports.randomBackgroundColor = randomBackgroundColor;
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
