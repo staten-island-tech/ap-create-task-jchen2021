@@ -35,6 +35,15 @@ section {
   text-align: center;
 }
 
+.testPage {
+  width: 30vw;
+  height: 40vh;
+  border: 3px black solid;
+  background-color: transparent;
+  font-size: 0rem;
+  text-align: center;
+}
+
 .rgbName {
   font-size: 2rem;
   text-align: center;

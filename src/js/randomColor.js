@@ -36,6 +36,8 @@ const userInput = function(){
     timing = parseInt(time*1000);
     createInterval(timing);    
 }; 
+
+
 const displayArr = function(){
     showHistory.addEventListener("click", (e) =>{
     e.preventDefault();
@@ -43,7 +45,12 @@ const displayArr = function(){
     history.innerHTML=historyArray() + `<br>`;
     }
   )}
-
+const test = function(){
+    setInterval(() => {
+        const testPage = DOMSelectors.testPage;
+        testPage.style.backgroundColor = rgbId();
+    }, 500);
+}
 //get the user input time
 const randomBackgroundColor= function(){
     DOMSelectors.numberSubmit.addEventListener('click', function(e){
@@ -53,6 +60,12 @@ const randomBackgroundColor= function(){
         //randomColor();
     })
 }    
-
+const testFunction = function(){
+    DOMSelectors.testButton.addEventListener('click', function(e){
+        e.preventDefault();
+        test();
+    })
+}    
+testFunction();
 export {randomBackgroundColor};
 export {displayArr};

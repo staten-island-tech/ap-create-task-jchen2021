@@ -128,8 +128,10 @@ const DOMSelectors = {
   enterForm: document.getElementById("enterForm"),
   time: document.getElementById("enterArea"),
   colorPage: document.querySelector('.colorPage'),
+  testPage: document.querySelector('.testPage'),
   rgbName: document.querySelector('.rgbName'),
   numberSubmit: document.querySelector(".submit-button"),
+  testButton: document.querySelector(".test-button"),
   history: document.querySelector(".history"),
   showHistory: document.querySelector(".showHistory"),
   historyArr: document.querySelector(".historyArr")
@@ -189,10 +191,17 @@ const displayArr = function displayArr() {
     history.innerHTML = '';
     history.innerHTML = historyArray() + "<br>";
   });
-}; //get the user input time
-
+};
 
 exports.displayArr = displayArr;
+
+const test = function test() {
+  setInterval(() => {
+    const testPage = _DOM.DOMSelectors.testPage;
+    testPage.style.backgroundColor = rgbId();
+  }, 500);
+}; //get the user input time
+
 
 const randomBackgroundColor = function randomBackgroundColor() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
@@ -203,6 +212,15 @@ const randomBackgroundColor = function randomBackgroundColor() {
 };
 
 exports.randomBackgroundColor = randomBackgroundColor;
+
+const testFunction = function testFunction() {
+  _DOM.DOMSelectors.testButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    test();
+  });
+};
+
+testFunction();
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
