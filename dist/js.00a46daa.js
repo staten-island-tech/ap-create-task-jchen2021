@@ -173,14 +173,14 @@ const randomColor = function randomColor() {
 }; //set timer
 
 
-const userInput = function userInput() {
-  if (interval) {
-    console.log('Clear');
-    clearInterval(interval);
-  }
-
-  console.log('Enter a time interval');
+function createInterval(timing) {
+  clearInterval(interval);
   interval = setInterval(randomColor(), timing);
+}
+
+const userInput = function userInput() {
+  timing = parseInt(time * 1000);
+  createInterval(timing);
 };
 
 const displayArr = function displayArr() {
@@ -197,8 +197,8 @@ exports.displayArr = displayArr;
 const randomBackgroundColor = function randomBackgroundColor() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
     e.preventDefault();
-    const timing = parseInt(time * 5000);
-    userInput(timing); //randomColor();
+    userInput(); //setInterval(randomColor(),500)
+    //randomColor();
   });
 }; //history
 // change color every x milliseconds
@@ -242,7 +242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3823" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10405" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

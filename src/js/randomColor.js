@@ -25,13 +25,14 @@ const randomColor = function(){
 };
 
 //set timer
-const userInput = function(){  
-    if(interval){
-        console.log('Clear');
-        clearInterval(interval);
-    }
-    console.log('Enter a time interval');
+function createInterval(timing){
+    clearInterval(interval);
     interval = setInterval(randomColor(),timing);
+}
+
+const userInput = function(){  
+    timing = parseInt(time*1000);
+    createInterval(timing);    
 }; 
 
 const displayArr = function(){
@@ -46,8 +47,8 @@ const displayArr = function(){
 const randomBackgroundColor= function(){
     DOMSelectors.numberSubmit.addEventListener('click', function(e){
         e.preventDefault();
-        const timing = parseInt(time*5000);
-        userInput(timing);
+        userInput();
+        //setInterval(randomColor(),500)
         //randomColor();
     })
 }    
