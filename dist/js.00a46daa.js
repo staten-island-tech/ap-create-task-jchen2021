@@ -148,7 +148,7 @@ exports.displayArr = exports.randomBackgroundColor = void 0;
 var _DOM = require("./DOM");
 
 var interval;
-var timing = 50;
+var timing;
 var time = _DOM.DOMSelectors.time.value;
 const showHistory = _DOM.DOMSelectors.showHistory;
 const history = _DOM.DOMSelectors.history;
@@ -171,18 +171,16 @@ const historyArray = function historyArray() {
 const randomColor = function randomColor() {
   var last = colorHist[colorHist.length - 1];
   colorPage.style.backgroundColor = last;
-  colorPage.innerHTML = historyArray(last);
+  colorPage.innerHTML = colorHist[colorHist.length - 1];
 }; //set timer
 
 
-function createInterval(timing) {
-  interval = setInterval(randomColor(), timing);
-  clearInterval(interval);
-}
-
 const userInput = function userInput() {
-  timing = parseInt(time * 1000);
-  createInterval(timing);
+  if (timing) {
+    clearInterval(timing);
+  }
+
+  test();
 };
 
 const displayArr = function displayArr() {
@@ -197,9 +195,10 @@ exports.displayArr = displayArr;
 
 const test = function test() {
   setInterval(() => {
+    historyArray();
     const testPage = _DOM.DOMSelectors.testPage;
-    testPage.style.backgroundColor = rgbId();
-  }, 500);
+    testPage.style.backgroundColor = colorHist[colorHist.length - 1];
+  }, timing);
 }; //get the user input time
 
 
@@ -214,9 +213,11 @@ const randomBackgroundColor = function randomBackgroundColor() {
 exports.randomBackgroundColor = randomBackgroundColor;
 
 const testFunction = function testFunction() {
-  _DOM.DOMSelectors.testButton.addEventListener('click', function (e) {
+  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
     e.preventDefault();
-    test();
+    timing = parseInt(time * 1000);
+    userInput();
+    console.log(timing);
   });
 };
 
@@ -258,7 +259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10405" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1755" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

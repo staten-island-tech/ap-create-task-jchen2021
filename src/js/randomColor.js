@@ -1,6 +1,6 @@
 import {DOMSelectors} from "./DOM";
 var interval;
-var timing = 50;
+var timing;
 var time = DOMSelectors.time.value;
 const showHistory = DOMSelectors.showHistory;
 const history = DOMSelectors.history;
@@ -23,18 +23,16 @@ const historyArray = function(){
 const randomColor = function(){
     var last = colorHist[colorHist.length -1]
     colorPage.style.backgroundColor = last;
-    colorPage.innerHTML= historyArray(last);
-};
+    colorPage.innerHTML= colorHist[colorHist.length -1];
+}; 
 
 //set timer
-function createInterval(timing){
-    interval = setInterval(randomColor(),timing);
-    clearInterval(interval);
-}
 
-const userInput = function(){  
-    timing = parseInt(time*1000);
-    createInterval(timing);    
+const userInput = function(){ 
+    if(timing){ 
+    clearInterval(timing);
+    }
+    test();
 }; 
 
 
@@ -47,9 +45,10 @@ const displayArr = function(){
   )}
 const test = function(){
     setInterval(() => {
+        historyArray();
         const testPage = DOMSelectors.testPage;
-        testPage.style.backgroundColor = rgbId();
-    }, 500);
+        testPage.style.backgroundColor = colorHist[colorHist.length -1];
+    }, timing);
 }
 //get the user input time
 const randomBackgroundColor= function(){
@@ -61,11 +60,13 @@ const randomBackgroundColor= function(){
     })
 }    
 const testFunction = function(){
-    DOMSelectors.testButton.addEventListener('click', function(e){
+    DOMSelectors.numberSubmit.addEventListener('click', function(e){
         e.preventDefault();
-        test();
+        timing = parseInt(time*1000);
+        userInput();
+        console.log(timing);
     })
 }    
 testFunction();
 export {randomBackgroundColor};
-export {displayArr};
+export {displayArr}; 
