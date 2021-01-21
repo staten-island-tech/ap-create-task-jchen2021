@@ -27,12 +27,18 @@ const randomColor = function(){
 }; 
 
 //set timer
-
+const test = function(){
+    setInterval(() => {
+        historyArray();
+        const testPage = DOMSelectors.testPage;
+        testPage.style.backgroundColor = colorHist[colorHist.length -1];
+    }, timing);
+}
 const userInput = function(){ 
-    if(timing){ 
-    clearInterval(timing);
+    if(interval){ 
+    clearInterval(interval);
     }
-    test();
+    interval = test();
 }; 
 
 
@@ -43,13 +49,7 @@ const displayArr = function(){
     history.innerHTML=historyArray() + `<br>`;
     }
   )}
-const test = function(){
-    setInterval(() => {
-        historyArray();
-        const testPage = DOMSelectors.testPage;
-        testPage.style.backgroundColor = colorHist[colorHist.length -1];
-    }, timing);
-}
+
 //get the user input time
 const randomBackgroundColor= function(){
     DOMSelectors.numberSubmit.addEventListener('click', function(e){

@@ -175,12 +175,20 @@ const randomColor = function randomColor() {
 }; //set timer
 
 
+const test = function test() {
+  setInterval(() => {
+    historyArray();
+    const testPage = _DOM.DOMSelectors.testPage;
+    testPage.style.backgroundColor = colorHist[colorHist.length - 1];
+  }, timing);
+};
+
 const userInput = function userInput() {
-  if (timing) {
-    clearInterval(timing);
+  if (interval) {
+    clearInterval(interval);
   }
 
-  test();
+  interval = test();
 };
 
 const displayArr = function displayArr() {
@@ -189,18 +197,10 @@ const displayArr = function displayArr() {
     history.innerHTML = '';
     history.innerHTML = historyArray() + "<br>";
   });
-};
-
-exports.displayArr = displayArr;
-
-const test = function test() {
-  setInterval(() => {
-    historyArray();
-    const testPage = _DOM.DOMSelectors.testPage;
-    testPage.style.backgroundColor = colorHist[colorHist.length - 1];
-  }, timing);
 }; //get the user input time
 
+
+exports.displayArr = displayArr;
 
 const randomBackgroundColor = function randomBackgroundColor() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
@@ -229,7 +229,6 @@ var _DOM = require("./DOM");
 
 var _randomColor = require("./randomColor");
 
-(0, _randomColor.randomBackgroundColor)();
 (0, _randomColor.displayArr)();
 },{"./DOM":"js/DOM.js","./randomColor":"js/randomColor.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -259,7 +258,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1755" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2356" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
