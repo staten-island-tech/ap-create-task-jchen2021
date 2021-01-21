@@ -143,7 +143,7 @@ exports.DOMSelectors = DOMSelectors;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.displayArr = exports.randomBackgroundColor = void 0;
+exports.testFunction = exports.displayArr = void 0;
 
 var _DOM = require("./DOM");
 
@@ -210,8 +210,6 @@ const randomBackgroundColor = function randomBackgroundColor() {
   });
 };
 
-exports.randomBackgroundColor = randomBackgroundColor;
-
 const testFunction = function testFunction() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
     e.preventDefault();
@@ -221,7 +219,7 @@ const testFunction = function testFunction() {
   });
 };
 
-testFunction();
+exports.testFunction = testFunction;
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -229,6 +227,7 @@ var _DOM = require("./DOM");
 
 var _randomColor = require("./randomColor");
 
+(0, _randomColor.testFunction)();
 (0, _randomColor.displayArr)();
 },{"./DOM":"js/DOM.js","./randomColor":"js/randomColor.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -258,7 +257,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2356" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2648" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

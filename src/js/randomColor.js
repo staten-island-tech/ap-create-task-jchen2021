@@ -67,6 +67,7 @@ const testFunction = function(){
         console.log(timing);
     })
 }    
-testFunction();
-export {randomBackgroundColor};
+
+
 export {displayArr}; 
+export {testFunction};
