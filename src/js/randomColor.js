@@ -1,13 +1,13 @@
 import {DOMSelectors} from "./DOM";
 var interval;
-var timing;
+var timing = 500;
 var time = DOMSelectors.time.value;
 const showHistory = DOMSelectors.showHistory;
 const history = DOMSelectors.history;
 const colorHist = []
 
 //get a random color
-const colorPage = DOMSelectors.colorPage;
+// const colorPage = DOMSelectors.colorPage;
 const rgbId = function (r,g,b){
     var r = Math.floor(Math.random() *256);
     var g = Math.floor(Math.random() *256);
@@ -19,12 +19,12 @@ const historyArray = function(){
     colorHist.push(rgbId());
     return colorHist;
 };
-
+/* 
 const randomColor = function(){
     var last = colorHist[colorHist.length -1]
     colorPage.style.backgroundColor = last;
     colorPage.innerHTML= colorHist[colorHist.length -1];
-}; 
+};  */
 
 //set timer
 const test = function(){
@@ -46,7 +46,7 @@ const displayArr = function(){
     showHistory.addEventListener("click", (e) =>{
     e.preventDefault();
     history.innerHTML='';    
-    history.innerHTML=historyArray() + `<br>`;
+    history.innerHTML=historyArray();
     }
   )}
 
