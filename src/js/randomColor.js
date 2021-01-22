@@ -1,6 +1,7 @@
 import {DOMSelectors} from "./DOM";
-const interval;
+let interval;
 const timing = 500;
+
 const showHistory = DOMSelectors.showHistory;
 const history = DOMSelectors.history;
 const colorHist = []
@@ -62,7 +63,7 @@ const testFunction = function(){
     DOMSelectors.numberSubmit.addEventListener('click', function(e){
         e.preventDefault();
         const time = DOMSelectors.time.value;
-        timing = parseInt(time*1000);
+        const timing = parseInt(time*1000);
         userInput();
         console.log(timing);
     })
