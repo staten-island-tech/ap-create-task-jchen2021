@@ -1,6 +1,5 @@
 import {DOMSelectors} from "./DOM";
 let interval;
-const timing = 500;
 
 const showHistory = DOMSelectors.showHistory;
 const history = DOMSelectors.history;
@@ -38,8 +37,11 @@ const userInput = function(){
     if(interval){ 
     clearInterval(interval);
     }
-    interval = test();
-}; 
+    else{
+        test();    
+    } 
+}
+
 
 
 const displayArr = function(){
