@@ -93,6 +93,9 @@ section {
   height: 40vh;
   font-size: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .historyArr {

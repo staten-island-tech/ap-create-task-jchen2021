@@ -26,22 +26,6 @@ const randomColor = function(){
 };  */
 
 //set timer
-const test = function(){
-    setInterval(() => {
-        historyArray();
-        const testPage = DOMSelectors.testPage;
-        testPage.style.backgroundColor = colorHist[colorHist.length -1];
-    }, timing);
-}
-const userInput = function(){ 
-    if(interval){ 
-    clearInterval(interval);
-    }
-    else{
-        test();    
-    } 
-}
-
 
 
 const displayArr = function(){
@@ -53,24 +37,37 @@ const displayArr = function(){
   )}
 
 //get the user input time
-const randomBackgroundColor= function(){
-    DOMSelectors.numberSubmit.addEventListener('click', function(e){
-        e.preventDefault();
-        userInput();
-        //setInterval(randomColor(),500)
-        //randomColor();
-    })
-}    
 const testFunction = function(){
     DOMSelectors.numberSubmit.addEventListener('click', function(e){
-        e.preventDefault();
-        const time = DOMSelectors.time.value;
-        const timing = parseInt(time*1000);
-        userInput();
+    e.preventDefault();
+    const input = DOMSelectors.time.value;
+    const timing = parseInt(input*1000);
+    if(interval){ 
+    clearInterval(interval);
+    }
+        interval = setInterval(() => {
+        historyArray();
+        const testPage = DOMSelectors.testPage;
+        testPage.style.backgroundColor = colorHist[colorHist.length -1];
+    }, timing);
+        
         console.log(timing);
+
+        
     })
 }    
+
+
+const resetButton = function(){ 
+    DOMSelectors.reset.addEventListener("click", (e) =>{
+        while(colorHist.length > 0){
+            colorHist.pop();
+        }
+      })
+}
+
 
 
 export {displayArr}; 
 export {testFunction};
+export {resetButton};

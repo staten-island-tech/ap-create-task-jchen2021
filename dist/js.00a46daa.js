@@ -144,7 +144,7 @@ exports.DOMSelectors = DOMSelectors;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.testFunction = exports.displayArr = void 0;
+exports.resetButton = exports.testFunction = exports.displayArr = void 0;
 
 var _DOM = require("./DOM");
 
@@ -174,22 +174,6 @@ const randomColor = function(){
 //set timer
 
 
-const test = function test() {
-  setInterval(() => {
-    historyArray();
-    const testPage = _DOM.DOMSelectors.testPage;
-    testPage.style.backgroundColor = colorHist[colorHist.length - 1];
-  }, timing);
-};
-
-const userInput = function userInput() {
-  if (interval) {
-    clearInterval(interval);
-  } else {
-    test();
-  }
-};
-
 const displayArr = function displayArr() {
   showHistory.addEventListener("click", e => {
     e.preventDefault();
@@ -201,25 +185,36 @@ const displayArr = function displayArr() {
 
 exports.displayArr = displayArr;
 
-const randomBackgroundColor = function randomBackgroundColor() {
-  _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
-    e.preventDefault();
-    userInput(); //setInterval(randomColor(),500)
-    //randomColor();
-  });
-};
-
 const testFunction = function testFunction() {
   _DOM.DOMSelectors.numberSubmit.addEventListener('click', function (e) {
     e.preventDefault();
-    const time = _DOM.DOMSelectors.time.value;
-    const timing = parseInt(time * 1000);
-    userInput();
+    const input = _DOM.DOMSelectors.time.value;
+    const timing = parseInt(input * 1000);
+
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    interval = setInterval(() => {
+      historyArray();
+      const testPage = _DOM.DOMSelectors.testPage;
+      testPage.style.backgroundColor = colorHist[colorHist.length - 1];
+    }, timing);
     console.log(timing);
   });
 };
 
 exports.testFunction = testFunction;
+
+const resetButton = function resetButton() {
+  _DOM.DOMSelectors.reset.addEventListener("click", e => {
+    while (colorHist.length > 0) {
+      colorHist.pop();
+    }
+  });
+};
+
+exports.resetButton = resetButton;
 },{"./DOM":"js/DOM.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -229,6 +224,7 @@ var _randomColor = require("./randomColor");
 
 (0, _randomColor.testFunction)();
 (0, _randomColor.displayArr)();
+(0, _randomColor.resetButton)();
 },{"./DOM":"js/DOM.js","./randomColor":"js/randomColor.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -257,7 +253,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9112" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9924" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
