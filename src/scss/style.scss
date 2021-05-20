@@ -78,6 +78,7 @@ section{
 .buttons{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   width:20vw;
   height:15vh;
