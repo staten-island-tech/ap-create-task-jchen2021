@@ -11,6 +11,7 @@ body {
   font-size: 3rem;
   margin: 3rem auto;
   text-align: center;
+  align-items: center;
 }
 
 section {
@@ -86,12 +87,19 @@ section {
   justify-content: space-around;
   align-items: center;
   width: 20vw;
-  height: 15vh;
+  height: 10vh;
+}
+
+.showHistory {
+  color: #e03652;
+  font-size: 1.5rem;
+  border-radius: 3rem;
+  padding: 1%;
+  margin-top: 3rem;
 }
 
 .history {
   width: 50vw;
-  height: 40vh;
   font-size: 2rem;
   text-align: center;
   display: flex;
